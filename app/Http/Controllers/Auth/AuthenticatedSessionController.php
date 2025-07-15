@@ -42,14 +42,46 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): Response
+    public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
+        $user = Auth::user();
 
-        $request->session()->invalidate();
+        if (!$user) {
+            return response()->json([
+                'message' => 'Tidak sah. Anda belum login atau token tidak valid.'
+            ], 401);
+        }
 
-        $request->session()->regenerateToken();
+        $request->user()->currentAccessToken()->delete();
 
-        return response()->noContent();
+        return response()->json([
+            'message' => 'Berhasil logout. Sesi Anda telah diakhiri.'
+        ], 200);
+    }
+
+    public function deleteAccount()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Tidak sah. Anda perlu login untuk menghapus akun.'
+            ], 401);
+        }
+
+        if ($user instanceof \Illuminate\Database\Eloquent\Collection) {
+            $user = $user->first();
+        }
+        try {
+            $user->delete();
+
+            return response()->json([
+                'message' => 'Akun Anda berhasil dihapus.'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Terjadi kesalahan saat menghapus akun. Silakan coba lagi nanti.'
+            ], 500);
+        }
     }
 }

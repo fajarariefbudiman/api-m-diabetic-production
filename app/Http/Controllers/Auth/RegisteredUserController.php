@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
             : null;
 
         $user = User::create([
-            'name'             => $data['fullname'],
+            'fullname'             => $data['fullname'],
             'email'            => $data['email'],
             'phone_number'     => $data['phone_number'],
             'password'         => Hash::make($data['password']),
@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
 
         return response()->json([
             'id'             => $user->id,
-            'fullname'       => $user->name,
+            'fullname'       => $user->fullname,
             'email'          => $user->email,
             'phone_number'   => $user->phone_number,
             'birth_date'     => $user->birth_date,

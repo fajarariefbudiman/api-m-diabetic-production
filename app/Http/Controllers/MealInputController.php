@@ -26,29 +26,46 @@ class MealInputController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'meal_type' => 'required|string',
-            'food_id' => 'nullable|exists:foods,id',
-            'manual_name' => 'nullable|string',
-            'carbs' => 'nullable|numeric',
-            'sugar' => 'nullable|numeric',
-            'calories' => 'nullable|numeric',
-            'time' => 'required|date_format:Y-m-d\TH:i:sP'
-        ]);
+        try {
+            $validator = Validator::make($request->all(), [
+                'meal_type'   => 'required|string',
+                'food_id'     => 'nullable|exists:foods,id',
+                'manual_name' => 'nullable|string',
+                'carbs'       => 'nullable|numeric',
+                'sugar'       => 'nullable|numeric',
+                'calories'    => 'nullable|numeric',
+                'time'        => 'required|date_format:Y-m-d\TH:i:sP'
+            ]);
 
-        if ($validator->fails()) {
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => 'Terjadi kesalahan pada data yang Anda kirimkan. Mohon periksa kembali.',
+                    'errors' => $validator->errors()
+                ], 422);
+            }
+
+            $input = $validator->validated();
+            $input['user_id'] = Auth::id();
+
+            $meal = MealInput::create($input);
+
             return response()->json([
-                'message' => 'Terjadi kesalahan pada data yang Anda kirimkan. Mohon periksa kembali.',
-                'errors' => $validator->errors()
-            ], 422);
+                'message' => 'Data makan berhasil disimpan.',
+                'data' => $meal
+            ], 201);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json([
+                'message' => 'Terjadi kesalahan saat menyimpan ke database.',
+                'error' => $e->getMessage()
+            ], 500);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Terjadi kesalahan tak terduga.',
+                'error' => $e->getMessage()
+            ], 500);
         }
-
-        $input = $validator->validated();
-        $input['user_id'] = Auth::id();
-
-        $meal = MealInput::create($input);
-        return response()->json($meal, 201);
     }
+
 
     public function destroy($id)
     {

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->enum('type', ['poster', 'video', 'berita']);
             $table->text('content')->nullable();
-            $table->string('file_url')->nullable();
+            $table->string('url')->nullable();
             $table->string('category')->nullable();
             $table->timestamps();
         });

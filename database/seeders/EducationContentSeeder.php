@@ -175,13 +175,13 @@ class EducationContentSeeder extends Seeder
                 'url' => '/storage/posters/pengobatan_injeksi.png',
                 'category' => 'diabetes melitus',
             ],
-            [
-                'title' => 'Vidio Animasi Diabetes Melitus',
-                'type' => 'video',
-                'content' => 'Diabetes melitus adalah penyakit dimana kadar gula dalam darah terlalu tinggi. Normalnya tubuh kita menghasilkan insulin, hormon yang membantu mengubah gula menjadi energi',
-                'url' => '/storage/video_animasi_diabetes.mp4',
-                'category' => 'diabetes melitus',
-            ],
+            // [
+            //     'title' => 'Vidio Animasi Diabetes Melitus',
+            //     'type' => 'video',
+            //     'content' => 'Diabetes melitus adalah penyakit dimana kadar gula dalam darah terlalu tinggi. Normalnya tubuh kita menghasilkan insulin, hormon yang membantu mengubah gula menjadi energi',
+            //     'url' => '/storage/video_animasi_diabetes.mp4',
+            //     'category' => 'diabetes melitus',
+            // ],
         ]);
     }
 }

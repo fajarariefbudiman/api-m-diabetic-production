@@ -112,6 +112,77 @@ class EducationContentSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+             [
+                'title' => 'Komplikasi Diabetes Melitus',
+                'type' => 'image',
+                'content' => 'Poster ini menjelaskan berbagai komplikasi serius akibat diabetes, seperti gagal ginjal, kebutaan, dan amputasi. Edukasi ini penting untuk meningkatkan kesadaran pencegahan dini.',
+                'url' => '/storage/posters/komplikasi_dm.png',
+                'category' => 'komplikasi',
+            ],
+            [
+                'title' => 'Gejala Diabetes Melitus',
+                'type' => 'image',
+                'content' => 'Gejala umum DM antara lain sering haus, sering buang air kecil, penurunan berat badan tanpa sebab, dan luka sulit sembuh. Kenali gejalanya sejak dini!',
+                'url' => '/storage/posters/gejala_dm.png',
+                'category' => 'gejala',
+            ],
+            [
+                'title' => 'Cara Mengelola Diabetes',
+                'type' => 'image',
+                'content' => 'Poster ini memberikan panduan praktis tentang manajemen DM: olahraga rutin, kontrol gula darah, konsumsi makanan sehat, dan cek kesehatan berkala.',
+                'url' => '/storage/posters/mengelola_dm.png',
+                'category' => 'manajemen',
+            ],
+            [
+                'title' => 'Mitos & Fakta Diabetes',
+                'type' => 'image',
+                'content' => 'Banyak mitos tentang diabetes yang salah, seperti "diabetes hanya menyerang orang tua". Poster ini meluruskan fakta-fakta penting.',
+                'url' => '/storage/posters/mitos_fakta_dm.png',
+                'category' => 'mitos',
+            ],
+            [
+                'title' => 'Perawatan Kaki Diabetes',
+                'type' => 'image',
+                'content' => 'Penderita DM harus merawat kaki secara khusus untuk mencegah luka yang bisa menyebabkan amputasi. Edukasi ini menyampaikan langkah-langkah perawatan kaki yang benar.',
+                'url' => '/storage/posters/perawatan_kaki.png',
+                'category' => 'perawatan kaki',
+            ],
+            [
+                'title' => 'Diabetes Melitus',
+                'type' => 'image',
+                'content' => 'Diabetes melitus adalah penyakit dimana kadar gula dalam darah terlalu tinggi. Normalnya tubuh kita menghasilkan insulin, hormon yang membantu mengubah gula menjadi energi',
+                'url' => '/storage/posters/diabetes_melitus.png',
+                'category' => 'diabetes melitus',
+            ],
+            [
+                'title' => 'Alur Terapi',
+                'type' => 'image',
+                'content' => 'Diabetes melitus adalah penyakit dimana kadar gula dalam darah terlalu tinggi. Normalnya tubuh kita menghasilkan insulin, hormon yang membantu mengubah gula menjadi energi',
+                'url' => '/storage/posters/alur_terapi.png',
+                'category' => 'diabetes melitus',
+            ],
+            [
+                'title' => 'Alur Terapi DM',
+                'type' => 'image',
+                'content' => 'Diabetes melitus adalah penyakit dimana kadar gula dalam darah terlalu tinggi. Normalnya tubuh kita menghasilkan insulin, hormon yang membantu mengubah gula menjadi energi',
+                'url' => '/storage/posters/alur_terapi2.png',
+                'category' => 'diabetes melitus',
+            ],
+            [
+                'title' => 'Pengobatan Injeksi',
+                'type' => 'image',
+                'content' => 'Diabetes melitus adalah penyakit dimana kadar gula dalam darah terlalu tinggi. Normalnya tubuh kita menghasilkan insulin, hormon yang membantu mengubah gula menjadi energi',
+                'url' => '/storage/posters/pengobatan_injeksi.png',
+                'category' => 'diabetes melitus',
+            ],
+            [
+                'title' => 'Vidio Animasi Diabetes Melitus',
+                'type' => 'video',
+                'content' => 'Diabetes melitus adalah penyakit dimana kadar gula dalam darah terlalu tinggi. Normalnya tubuh kita menghasilkan insulin, hormon yang membantu mengubah gula menjadi energi',
+                'url' => '/storage/video_animasi_diabetes.mp4',
+                'category' => 'diabetes melitus',
+            ],
         ]);
     }
 }
+// 65432

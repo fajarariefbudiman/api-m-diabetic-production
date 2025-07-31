@@ -36,23 +36,17 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'login' => [
-                'required',
-                'string',
-                function ($attribute, $value, $fail) {
-                    if (!filter_var($value, FILTER_VALIDATE_EMAIL) && !preg_match('/^08[0-9]{8,12}$/', $value)) {
-                        $fail('Login harus berupa email yang valid atau nomor HP yang dimulai dengan 08.');
-                    }
-                }
-            ],
+            'email' => 'required_without:phone_number|email',
+            'phone_number' => ['required_without:email', 'regex:/^08[0-9]{8,12}$/'],
             'password' => ['required', 'string'],
         ];
     }
 
+
     public function messages(): array
     {
         return [
-            'login.required' => 'Email atau nomor HP wajib diisi.',
+            'email.required' => 'Email wajib diisi dan dengan format yang sesuai.',
             'password.required' => 'Password wajib diisi.',
         ];
     }

@@ -15,18 +15,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $login = $request->input('login');
-        $loginField = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone_number';
-
         $credentials = [
-            $loginField => $login,
-            'password' => $request->input('password'),
+            'password' => $request->password,
         ];
 
+        if ($request->filled('email')) {
+            $credentials['email'] = $request->email;
+        } else {
+            $credentials['phone_number'] = $request->phone_number;
+        }
+
         if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Kredensial tidak valid.'
-            ], 401);
+            return response()->json(['message' => 'Kredensial tidak valid.'], 401);
         }
 
         $user = Auth::user();
@@ -38,6 +38,7 @@ class AuthenticatedSessionController extends Controller
             'user' => $user,
         ]);
     }
+
 
     /**
      * Destroy an authenticated session.

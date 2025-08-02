@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class EducationContentSeeder extends Seeder
 {
@@ -12,6 +13,21 @@ class EducationContentSeeder extends Seeder
      */
     public function run(): void
     {
+        $source = database_path('seeders/files/posters');
+        $destination = storage_path('app/public/posters');
+
+        if (!File::exists($destination)) {
+            File::makeDirectory($destination, 0755, true);
+        }
+
+        File::copyDirectory($source, $destination);
+
+        $videoSource = database_path('seeders/files/videos');
+        $videoDestination = storage_path('app/public/videos');
+        if (!File::exists($videoDestination)) {
+            File::makeDirectory($videoDestination, 0755, true);
+        }
+        File::copyDirectory($videoSource, $videoDestination);
         DB::table('education_contents')->insert([
             [
                 'title' => 'Macam-macam Olahraga untuk Pasien Diabetes Melitus',
@@ -197,7 +213,7 @@ class EducationContentSeeder extends Seeder
                 'title' => 'Vidio Animasi Diabetes Melitus',
                 'type' => 'video',
                 'content' => 'Diabetes melitus adalah penyakit dimana kadar gula dalam darah terlalu tinggi. Normalnya tubuh kita menghasilkan insulin, hormon yang membantu mengubah gula menjadi energi',
-                'url' => '/storage/video_animasi_diabetes.mp4',
+                'url' => '/storage/videos/video_animasi_diabetes.mp4',
                 'category' => 'diabetes melitus',
                 'created_at' => now(),
                 'updated_at' => now(),

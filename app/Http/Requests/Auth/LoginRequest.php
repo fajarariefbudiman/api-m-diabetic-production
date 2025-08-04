@@ -47,6 +47,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required' => 'Email wajib diisi dan dengan format yang sesuai.',
+            'phone_number.required' => 'No Hp wajib diisi dengan benar',
             'password.required' => 'Password wajib diisi.',
         ];
     }

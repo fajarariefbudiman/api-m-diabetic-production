@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExerciseReminder extends Model
 {
-    /** @use HasFactory<\Database\Factories\ExerciseReminderFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'exercise_type',
+        'scheduled_time',
+        'duration_minutes',
+        'video_url',
+        'notes'
+    ];
 }
+

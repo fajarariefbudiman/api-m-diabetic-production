@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('screening_questions', function (Blueprint $table) {
-            $table->id();
-            $table->text('question');
-            $table->string('category')->nullable();
-            $table->integer('weight')->default(0);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
+	    $table->timestamp('glucose_level_updated_at')->nullable()->after('glucose_level');
         });
     }
 
@@ -25,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('screening_questions');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->dropColumn('glucose_level_updated_at');
+        });
     }
 };

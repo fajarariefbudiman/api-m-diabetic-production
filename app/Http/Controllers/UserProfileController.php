@@ -31,6 +31,12 @@ class UserProfileController extends Controller
 
             $updated = $user->update($request->validated());
 
+	    if (array_key_exists('glucose_level', $data)) {
+               if ($data['glucose_level'] != $user->glucose_level) {
+                   $data['glucose_level_updated_at'] = now();
+               }
+            }
+
             if (!$updated) {
                 return response()->json([
                     'message' => 'Gagal memperbarui profil pengguna.'

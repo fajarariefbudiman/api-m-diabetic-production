@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('meal_inputs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('meal_type', ['breakfast', 'lunch', 'dinner', 'snack']);
+            $table->enum('meal_type', ['breakfast', 'lunch', 'dinner', 'snack', 'morning_snack', 'afternoon_snack' ]);
             $table->foreignId('food_id')->nullable()->constrained('foods')->onDelete('set null');
             $table->string('manual_name')->nullable();
             $table->float('carbs')->nullable();
